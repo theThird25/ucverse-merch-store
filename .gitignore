@@ -1,0 +1,10 @@
+
+.env
+*.env
+**/firebase-credentials*.json
+**/*service-account*.json
+node_modules/
+dist/
+backend/vendor/
+backend/storage/logs/*.log
+.DS_Store
