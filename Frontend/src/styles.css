@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+@theme {
+    --color-cobalt: #0047AB;
+    --color-lemon: #FFF44F;
+    --color-pink: #FF69B4;
+    --color-ink: #0A1633;
+
+    --color-paper: #FFFDEE;
+    --color-success: #0B6B3A;
+    --color-error: #A8123E;
+
+    --font-display: "Bricolage Grotesque", sans-serif;
+    --font-body: "Public Sans", sans-serif;
+
+    --shadow-sticker: 4px 4px 0 #0A1633;
+}
