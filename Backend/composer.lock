@@ -849,7 +849,8 @@
             "support": {
                 "source": "https://github.com/googleapis/google-cloud-php-firestore/tree/v2.4.0"
             },
-            "time": "2026-10-28T01:51:30+00:00"
+            "time": "2026-10-28T01:51:30+00:00",
+            "published-time": "2026-10-28T02:06:56+00:00"
         },
         {
             "name": "google/common-protos",
@@ -8992,12 +8993,12 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {},
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": "^8.2"
     },
-    "platform-dev": [],
-    "plugin-api-version": "2.6.0"
+    "platform-dev": {},
+    "plugin-api-version": "2.11.0"
 }
