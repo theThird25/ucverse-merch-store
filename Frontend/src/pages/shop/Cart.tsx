@@ -7,7 +7,7 @@ import { useCart } from '../../context/CartContext'
 import { isPositiveInt } from '../../lib/cart'
 import { useAsync } from '../../lib/hooks'
 import { formatPHP } from '../../lib/money'
-import { btn, cx, fieldError, input, linkBtn } from '../../lib/ui'
+import { btn, cx, fieldError, linkBtn, qtyInput } from '../../lib/ui'
 
 function QtyControl({ line, onChange }: { line: CartLine; onChange: (n: number) => void }) {
     const [text, setText] = useState(String(line.qty))
@@ -27,7 +27,7 @@ function QtyControl({ line, onChange }: { line: CartLine; onChange: (n: number) 
         <div className="inline-flex items-center gap-1">
             <button className={btn('default', 'sm')} aria-label={`Decrease ${line.name}`} disabled={line.qty <= 1} onClick={() => onChange(line.qty - 1)}>−</button>
             <input
-            className={cx(input, 'w-16 px-1 py-1 text-center')}
+            className={qtyInput}
             aria-label={`Quantity for ${line.name}`} type="number" min={1} max={line.stock} step={1} inputMode="numeric"
             value={text} onChange={(e) => setText(e.target.value)}
             onBlur={() => commit(text)} onKeyDown={(e) => e.key === 'Enter' && commit(text)}

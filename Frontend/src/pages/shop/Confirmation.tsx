@@ -25,8 +25,8 @@ export default function Confirmation() {
         </p>
 
         <div className="my-4 grid gap-4 md:grid-cols-2">
-            <section className={cx(panel, 'my-0')}>
-            <h2 className="mb-2 text-2xl font-bold">Details</h2>
+            <section className={panel}>
+                <h2 className="mb-2 text-2xl font-bold">Details</h2>
             <dl className="grid grid-cols-[7rem_1fr] gap-x-3 gap-y-1.5">
                 <dt className="font-semibold text-muted">Status</dt><dd><StatusPill status={order.status} /></dd>
                 <dt className="font-semibold text-muted">Placed</dt><dd>{formatDateTime(order.createdAt)}</dd>

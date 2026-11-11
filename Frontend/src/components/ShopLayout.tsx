@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
 import { useCart } from '../context/CartContext'
-import { container, cx } from '../lib/ui'
+import { container, cx, navLink } from '../lib/ui'
 
 const navLink = 'border-b-[3px] py-1.5 font-semibold text-white no-underline hover:text-lemon focus-visible:outline-lemon'
 
