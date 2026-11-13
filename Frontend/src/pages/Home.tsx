@@ -1,17 +1,15 @@
 import { Link } from 'react-router-dom'
-import { api } from '../../api/client'
-import { ErrorState, Loading } from '../../components/Bits'
-import { ProductCard } from '../../components/ProductCard'
-import { useAsync } from '../../lib/hooks'
-import { btn } from '../../lib/ui'
+import { api } from '../api/client'
+import { AsyncList } from '../components/Bits'
+import { ProductCard } from '../components/ProductCard'
+import { useAsync } from '../lib/hooks'
+import { btn } from '../lib/ui'
 
 const productGrid = 'grid grid-cols-[repeat(auto-fill,minmax(230px,1fr))] gap-5'
 
 export default function Home() {
     const cats = useAsync(() => api.categories(), [])
     const products = useAsync(() => api.products({}), [])
-
-    const featured = (products.data ?? []).filter((p) => p.inStock).slice(0, 4)
 
     return (
         <>
@@ -35,26 +33,32 @@ export default function Home() {
 
         <section id="categories" aria-labelledby="cat-h">
             <h2 id="cat-h" className="mb-3 mt-8 text-2xl font-bold">Browse by category</h2>
-            {cats.loading ? <Loading /> : cats.error ? <ErrorState message={cats.error} onRetry={cats.reload} /> : (
-            <div className="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-4">
-                {cats.data!.map((c) => (
-                <Link
+            <AsyncList state={cats} empty={<p className="text-muted">No categories yet.</p>}>
+            {(rows) => (
+                <div className="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-4">
+                {rows.map((c) => (
+                    <Link
                     key={c.id} to={`/products?category=${c.id}`}
                     className="flex flex-col gap-0.5 rounded-xl border-2 border-l-12 border-t-ink border-r-ink border-b-ink border-l-hotpink bg-white p-5 font-display text-xl font-bold text-ink no-underline shadow-ink hover:bg-lemon-soft hover:text-ink"
-                >
+                    >
                     <span>{c.name}</span>
                     <span className="font-sans text-sm font-normal text-muted">Shop {c.name.toLowerCase()}</span>
-                </Link>
+                    </Link>
                 ))}
-            </div>
+                </div>
             )}
+            </AsyncList>
         </section>
 
         <section aria-labelledby="feat-h">
             <h2 id="feat-h" className="mb-3 mt-8 text-2xl font-bold">Featured products</h2>
-            {products.loading ? <Loading /> : products.error ? <ErrorState message={products.error} onRetry={products.reload} /> : (
-            <div className={productGrid}>{featured.map((p) => <ProductCard key={p.id} product={p} />)}</div>
+            <AsyncList state={products} empty={<p className="text-muted">No products yet.</p>}>
+            {(rows) => (
+                <div className={productGrid}>
+                {rows.filter((p) => p.inStock).slice(0, 4).map((p) => <ProductCard key={p.id} product={p} />)}
+                </div>
             )}
+            </AsyncList>
         </section>
         </>
     )

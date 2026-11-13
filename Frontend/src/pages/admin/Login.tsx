@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from 'react'
+import { useState } from 'react'
 import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom'
 import { errorMessage } from '../../api/client'
 import { Field, Notice } from '../../components/Bits'

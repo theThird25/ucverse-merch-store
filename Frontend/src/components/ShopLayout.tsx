@@ -3,15 +3,12 @@ import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
 import { useCart } from '../context/CartContext'
 import { container, cx, navLink } from '../lib/ui'
 
-const navLink = 'border-b-[3px] py-1.5 font-semibold text-white no-underline hover:text-lemon focus-visible:outline-lemon'
-
 export function ShopLayout() {
     const { count } = useCart()
     const [open, setOpen] = useState(false)
     const loc = useLocation()
 
     useEffect(() => {
-        setOpen(false)
         if (loc.hash) document.getElementById(loc.hash.slice(1))?.scrollIntoView()
         else window.scrollTo(0, 0)
     }, [loc.pathname, loc.hash])
@@ -33,7 +30,7 @@ export function ShopLayout() {
                 {open ? 'Close' : 'Menu'}
             </button>
             <nav
-                id="main-nav" aria-label="Main"
+                id="main-nav" aria-label="Main" onClick={() => setOpen(false)}
                 className={cx('w-full flex-col items-start gap-1 pb-3 md:flex md:w-auto md:flex-row md:items-center md:gap-5 md:pb-0', open ? 'flex' : 'hidden')}
             >
                 <NavLink to="/" end className={link}>Home</NavLink>

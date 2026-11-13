@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from 'react'
+import { useState } from 'react'
 import { api, errorMessage } from '../../api/client'
 import { Empty, ErrorState, Loading, Notice } from '../../components/Bits'
 import { useAsync } from '../../lib/hooks'
